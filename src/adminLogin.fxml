@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminLoginController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1000.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/adminLoginImage.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="admintextfield" layoutX="93.0" layoutY="298.0" prefHeight="33.0" prefWidth="322.0" style="-fx-border-radius: 18; -fx-background-color: transparent; -fx-border-color: #ffffff; -fx-border-width: 2; -fx-text-fill: white;" />
+      <PasswordField fx:id="adminpasswordtextfield" layoutX="93.0" layoutY="382.0" prefHeight="33.0" prefWidth="322.0" style="-fx-background-color: transparent; -fx-border-color: #ffffff; -fx-border-radius: 18; -fx-border-width: 2; -fx-text-fill: white;" />
+      <Button fx:id="adminloginbutton" layoutX="93.0" layoutY="451.0" mnemonicParsing="false" onAction="#adminloginbuttonHandler" prefHeight="33.0" prefWidth="121.0" style="-fx-border-radius: 18; -fx-background-color: TRANSPARENT; -fx-border-color: #ffffff; -fx-border-width: 2;" text="Log-in" textFill="WHITE">
+         <font>
+            <Font name="Lucida Fax Demibold" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="notanadminbutton" layoutX="275.0" layoutY="451.0" mnemonicParsing="false" onAction="#notanadminButton" prefHeight="33.0" prefWidth="140.0" style="-fx-border-radius: 18; -fx-background-color: TRANSPARENT; -fx-border-color: #ffffff; -fx-border-width: 2;" text="Not an Admin?" textFill="WHITE">
+         <font>
+            <Font name="Lucida Fax Demibold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

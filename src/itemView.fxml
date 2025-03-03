@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="itemViewController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/itemViewImage.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="itemtable" layoutX="71.0" layoutY="158.0" prefHeight="319.0" prefWidth="857.0">
+         <columns>
+            <TableColumn fx:id="itemidcol" prefWidth="162.39999389648438" style="-fx-alignment: center;" text="Item ID" />
+            <TableColumn fx:id="itemnamecol" prefWidth="242.40003967285156" style="-fx-alignment: center;" text="Item Name" />
+            <TableColumn fx:id="itemtypecol" prefWidth="227.199951171875" style="-fx-alignment: center;" text="Item Type" />
+            <TableColumn fx:id="itempricecol" prefWidth="228.7999267578125" style="-fx-alignment: center;" text="Item Price" />
+         </columns>
+      </TableView>
+      <Label layoutX="857.0" layoutY="26.0" text="Items" textFill="WHITE">
+         <font>
+            <Font name="Lucida Fax Demibold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="returnitemviewbutton" layoutX="333.0" layoutY="18.0" mnemonicParsing="false" onAction="#returnitemviewButton" prefHeight="44.0" prefWidth="174.0" style="-fx-border-radius: 20; -fx-background-color: #4496C9; -fx-background-radius: 25; -fx-border-color: #224A63; -fx-border-width: 2;" text="Return" textFill="WHITE">
+         <font>
+            <Font name="Lucida Fax Demibold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="itemsearchtextfield" layoutX="606.0" layoutY="107.0" prefHeight="33.0" prefWidth="322.0" promptText="Search by Item (ID, Name, Type, Price)" style="-fx-border-radius: 18; -fx-background-color: transparent; -fx-border-color: #ffffff; -fx-border-width: 2; -fx-text-fill: white;" />
+   </children>
+</AnchorPane>
