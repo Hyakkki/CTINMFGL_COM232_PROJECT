@@ -72,6 +72,14 @@ public class itemTableController implements Initializable {
 
     @Override
     public void initialize(URL iturl, ResourceBundle itrb) {
+        itemtable.setOnMouseClicked (event -> {
+            Item item = itemtable.getSelectionModel().getSelectedItem();
+            if (item != null) {
+            itemidtextfield.setText(String.valueOf(item.getItId()));
+            itemnametextfield.setText(item.getItName());
+            itemtypetextfield.setText(item.getItType());
+            itempricetextfield.setText(String.valueOf(item.getItPrice()));
+    }});
         initializeitCol();
         displayItems();
     }
@@ -206,6 +214,15 @@ public class itemTableController implements Initializable {
     public void deleteitemButton(ActionEvent event) {
 
         Item item = itemtable.getSelectionModel().getSelectedItem();
+
+        if (item == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Player Selection");
+            alert.setContentText("Please select an item to delete");
+            alert.showAndWait();
+            return;
+        }
 
         if (DatabaseHandler.deleteItem(item)) {
             Alert alert = new Alert(AlertType.INFORMATION);

@@ -29,4 +29,16 @@ public class Player {
     public String getPlGameacc() {
         return plgameacc.get();
     }
+
+    public void setPlUsername(String playername) {
+        this.plusername.set(playername);
+    }
+
+    public void setPlGameacc(String playergameacc) {
+        this.plgameacc.set(playergameacc);
+    }
+
+    public void setPlPassword(String playerpassword) {
+        this.plpassword.set(playerpassword);
+    }
 }

@@ -23,4 +23,12 @@ public class User {
     public String getAccountCreated() {
         return accountcreated.get();
     }
+
+    public void setUsername(String adminname) {
+        this.username.set(adminname);
+    }
+    
+    public void setPassword(String adminpassword) {
+        this.password.set(adminpassword);
+    }
 }

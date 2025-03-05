@@ -61,6 +61,13 @@ public class adminTableController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        admintable.setOnMouseClicked(e -> {
+            User user = admintable.getSelectionModel().getSelectedItem();
+            if (user != null) {
+            adminusernametextfield.setText(user.getUsername());
+            adminpasswordtextfield.setText(user.getPassword());
+        }
+    });
         initializeCol();
         displayUsers();
     }
@@ -151,20 +158,21 @@ public class adminTableController implements Initializable {
 
         User user = admintable.getSelectionModel().getSelectedItem();
 
+        if (user == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Player Selection");
+            alert.setContentText("Please select an admin user to delete");
+            alert.showAndWait();
+            return;
+        }
+
         if (DatabaseHandler.deleteUser(user)) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText("Success");
             alert.setContentText("Admin deleted successfully!");
             alert.showAndWait();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("adminLogin.fxml"));
-            root = loader.load();
-
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
         }
         else {
             Alert alert = new Alert(AlertType.ERROR);
@@ -179,7 +187,16 @@ public class adminTableController implements Initializable {
 
     @FXML
     private void updateUser(ActionEvent event) {
-        
+        User user = admintable.getSelectionModel().getSelectedItem();
+
+        if (user == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("User Selection");
+            alert.setContentText("Please select a user to update");
+            alert.showAndWait();
+            return;
+        }
 
         String adminname = adminusernametextfield.getText();
         String adminpassword = adminpasswordtextfield.getText();
@@ -205,7 +222,8 @@ public class adminTableController implements Initializable {
             return;
         }
 
-        User user = new User(adminname, adminpassword, "");
+        user.setUsername(adminname);
+        user.setPassword(adminpassword);
 
         if (DatabaseHandler.updateUser(user)) {
             Alert alert = new Alert(AlertType.INFORMATION);

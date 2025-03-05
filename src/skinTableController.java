@@ -69,6 +69,15 @@ public class skinTableController implements Initializable {
 
     @Override
     public void initialize(URL skurl, ResourceBundle skrb) {
+        skintable.setOnMouseClicked ( e -> {
+            Skin skin = skintable.getSelectionModel().getSelectedItem();
+            if (skin != null) {
+            skinidtextfield.setText(String.valueOf(skin.getSkId()));
+            skinnametextfield.setText(skin.getSkName());
+            skintypetextfield.setText(skin.getSkType());
+            heronametextfield.setText(skin.getHrName());
+        }
+    });
         initializeskCol();
         displaySkins();
     }
@@ -151,6 +160,15 @@ public class skinTableController implements Initializable {
     public void deleteskinButton(ActionEvent event) {
 
         Skin skin = skintable.getSelectionModel().getSelectedItem();
+
+        if (skin == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Player Selection");
+            alert.setContentText("Please select a skin to delete");
+            alert.showAndWait();
+            return;
+        }
 
         if (DatabaseHandler.deleteSkin(skin)) {
             Alert alert = new Alert(AlertType.INFORMATION);

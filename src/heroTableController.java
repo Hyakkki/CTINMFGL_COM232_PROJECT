@@ -66,6 +66,14 @@ public class heroTableController implements Initializable {
 
     @Override
     public void initialize(URL hrurl, ResourceBundle hrrb) {
+        herotable.setOnMouseClicked(e -> {
+            Hero hero = herotable.getSelectionModel().getSelectedItem();
+            if (hero != null) {
+            heroidtextfield.setText(hero.getHrId());
+            heronametextfield.setText(hero.getHrName());
+            heroroletextfield.setText(hero.getHrRole());
+        }
+    });
         initializehrCol();
         displayHeroes();
     }
@@ -181,6 +189,15 @@ public class heroTableController implements Initializable {
     public void deleteheroButton(ActionEvent event) {
 
         Hero hero = herotable.getSelectionModel().getSelectedItem();
+
+        if (hero == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Player Selection");
+            alert.setContentText("Please select a hero to delete");
+            alert.showAndWait();
+            return;
+        }
 
         if (DatabaseHandler.deleteHero(hero)) {
             Alert alert = new Alert(AlertType.INFORMATION);

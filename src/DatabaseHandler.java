@@ -134,10 +134,10 @@ public class DatabaseHandler {
     public static boolean updateUser(User user) {
 
         try {
-            pstatement = getDBConnection().prepareStatement("UPDATE admin SET Username = ?, Password = ? WHERE Username = ?");
+            pstatement = getDBConnection().prepareStatement("UPDATE admin SET Username = ?, Password = ? WHERE AccountCreated = ?");
             pstatement.setString(1, user.getUsername());
             pstatement.setString(2, user.getPassword());
-            pstatement.setString(3, user.getUsername());
+            pstatement.setString(3, user.getAccountCreated());
             
             int res = pstatement.executeUpdate();
             
@@ -219,8 +219,8 @@ public class DatabaseHandler {
     public static boolean deletePlayer(Player player) {
 
         try {
-            pstatement = getDBConnection().prepareStatement("DELETE FROM player WHERE IngameName=?");
-            pstatement.setString(1, player.getPlUsername()); 
+            pstatement = getDBConnection().prepareStatement("DELETE FROM player WHERE PlayerID=?");
+            pstatement.setString(1, player.getPlId()); 
 
             int res = pstatement.executeUpdate();
             if (res > 0) {
@@ -237,11 +237,11 @@ public class DatabaseHandler {
     public static boolean updatePlayer(Player player) {
 
         try {
-            pstatement = getDBConnection().prepareStatement("UPDATE player SET IngameName = ?, GameAccount = ?, PlayerPassword = ? WHERE IngameName = ?");
+            pstatement = getDBConnection().prepareStatement("UPDATE player SET IngameName = ?, GameAccount = ?, PlayerPassword = ? WHERE PlayerID = ?");
             pstatement.setString(1, player.getPlUsername());
             pstatement.setString(2, player.getPlGameacc());
             pstatement.setString(3, player.getPlPassword());
-            pstatement.setString(4, player.getPlUsername());
+            pstatement.setString(4, player.getPlId());
             
             int res = pstatement.executeUpdate();
             

@@ -72,6 +72,14 @@ public class playerTableController implements Initializable {
 
     @Override
     public void initialize(URL plurl, ResourceBundle plrb) {
+        playertable.setOnMouseClicked(e -> {
+            Player player = playertable.getSelectionModel().getSelectedItem();
+            if (player != null) {
+            ingamenamelisttextfield.setText(player.getPlUsername());
+            emaillisttextfield.setText(player.getPlGameacc());
+            playerpasslisttextfield.setText(player.getPlPassword());
+        }
+    });
         initializeplCol();
         displayPlayers();
     }
@@ -183,17 +191,25 @@ public class playerTableController implements Initializable {
 
         Player player = playertable.getSelectionModel().getSelectedItem();
 
+        if (player == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Player Selection");
+            alert.setContentText("Please select a player to delete");
+            alert.showAndWait();
+            return;
+        }
+
         if (DatabaseHandler.deletePlayer(player)) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setHeaderText("Success");
             alert.setContentText("Player deleted successfully!");
             alert.showAndWait();
-        }
-        else {
+        } else {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setHeaderText("Error (5)");
+            alert.setHeaderText("Error");
             alert.setContentText("Player not deleted!");
             alert.showAndWait();
         }
@@ -203,6 +219,16 @@ public class playerTableController implements Initializable {
 
     @FXML
     private void updateplayerlistButton(ActionEvent event) {
+        Player player = playertable.getSelectionModel().getSelectedItem();
+
+        if (player == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Player Selection");
+            alert.setContentText("Please select a player to update");
+            alert.showAndWait();
+            return;
+        }
 
         String playername = ingamenamelisttextfield.getText();
         String playergameacc = emaillisttextfield.getText();
@@ -248,7 +274,9 @@ public class playerTableController implements Initializable {
             alert.showAndWait();
         }
 
-        Player player = new Player(0, playername, playergameacc, playerpassword);
+        player.setPlUsername(playername);
+        player.setPlGameacc(playergameacc);
+        player.setPlPassword(playerpassword);
 
         if (DatabaseHandler.updatePlayer(player)) {
             Alert alert = new Alert(AlertType.INFORMATION);
